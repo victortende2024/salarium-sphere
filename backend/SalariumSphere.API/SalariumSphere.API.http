@@ -1,0 +1,6 @@
+@SalariumSphere.API_HostAddress = http://localhost:5115
+
+GET {{SalariumSphere.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
