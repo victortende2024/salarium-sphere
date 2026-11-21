@@ -60,9 +60,12 @@ export function EmployeeForm() {
   const isEdit = !!id;
 
   // --- Data fetching hooks ---
-  const { data: employee, isLoading: employeeLoading } = useEmployee(id || '');
+ {/* const { data: employee, isLoading: employeeLoading } = useEmployee(id || '');
   const { data: companies } = useCompanies();
-  const { data: profiles } = useProfiles();
+  const { data: profiles } = useProfiles();*/}
+  const { data: employee, isLoading: employeeLoading } = useEmployee(id || '');
+  const { data: companies = [] } = useCompanies();
+  const { data: profiles = [] } = useProfiles();
 
   // --- Form setup ---
  const form = useForm<EmployeeFormData>({
@@ -96,16 +99,15 @@ export function EmployeeForm() {
   } = form;
 
   useEffect(() => {
-  // If companies are loaded and no company is selected, set the first one
-  if (companies && companies.length > 0 && !watch('companyId')) {
+  if (companies.length > 0 && !watch('companyId')) {
     setValue('companyId', companies[0].id);
   }
 }, [companies, watch('companyId'), setValue]);
 
   // --- Watch companyId for cascading departments ---
   const companyIdWatch = watch('companyId');
-  const { data: departments } = useDepartments(companyIdWatch || undefined);
- console.log('Departments:', departments);
+  const { data: departments = [] } = useDepartments(companyIdWatch || undefined);
+ 
 
   // --- Field arrays ---
   const { fields: salaryFields, append: appendSalary, remove: removeSalary } = useFieldArray({
@@ -276,7 +278,7 @@ export function EmployeeForm() {
             <SelectValue placeholder="Select Company" />
           </SelectTrigger>
           <SelectContent className="max-h-[200px]">
-            {companies?.map((c) => (
+            {companies.map((c) => (
               <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
             ))}
           </SelectContent>

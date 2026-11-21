@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { apiClient } from '../lib/api';
-import { Users, Briefcase, FileText, Plus, DollarSign, PieChart, TrendingUp, User } from 'lucide-react';
+import { Users, Briefcase, FileText, Plus, DollarSign, PieChart, TrendingUp } from 'lucide-react';
 
 interface PayrollHistoryItem {
   payrollRunId: string;
@@ -28,7 +28,7 @@ export function DashboardPage() {
   const { runPayroll, isRunning, result, error, reset } = usePayroll();
   const [history, setHistory] = useState<PayrollHistoryItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { data: employees, isLoading: employeesLoading } = useEmployees();
+  const { data: employees } = useEmployees();
   const { data: latestPayslip } = useLatestPayslip(employeeId || '');
 
   const companyId = '11111111-1111-1111-1111-111111111111';

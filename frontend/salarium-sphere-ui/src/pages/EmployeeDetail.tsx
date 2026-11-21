@@ -42,23 +42,7 @@ interface CustomBenefit {
   isRecurring: boolean;
 }
 
-interface Employee {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  employeeCode: string;
-  joinedDate?: string;
-  bankName?: string;
-  bankAccountNumber?: string;
-  bankBranchCode?: string;
-  companyName: string;
-  departmentName: string;
-  profileName: string;
-  isActive: boolean;
-  salaryStructures: SalaryStructure[];
-  customBenefits: CustomBenefit[];
-}
+
 
 export function EmployeeDetail() {
   const { id } = useParams<{ id: string }>();

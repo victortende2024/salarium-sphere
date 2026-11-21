@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { payrollService } from '../services/payrollService';
-import type { PayrollRunRequest, PayrollRunSummary } from '../services/payrollService';
+import type { PayrollRunRequest } from '../services/payrollService';
 
 export function usePayroll() {
   const runPayrollMutation = useMutation({

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { payslipService } from '../services/payslipService';
 import type { Payslip } from '../services/payslipService';
@@ -25,7 +24,7 @@ const currencyLabels: Record<number, string> = {
 };
 
 export function PayslipViewer() {
-  const navigate = useNavigate();
+  
   const { userRole, logout, employeeId } = useAuth();
   const [selectedEmployeeId, setSelectedEmployeeId] = useState<string>('');
   const [payslips, setPayslips] = useState<Payslip[]>([]);

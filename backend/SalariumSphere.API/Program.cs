@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using SalariumSphere.Application;
 using SalariumSphere.Infrastructure;
+using SalariumSphere.Infrastructure.Data;
+using SalariumSphere.Infrastructure.MasterData;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +74,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+
+
 // CORS for Vite React app
 builder.Services.AddCors(options =>
 {
@@ -86,6 +90,26 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        var masterContext = services.GetRequiredService<MasterDbContext>();
+        var configuration = services.GetRequiredService<IConfiguration>();
+
+        await DbInitializer.InitializeAsync(masterContext, configuration, logger);
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Database initialization failed.");
+        throw;   // rethrow so the container fails visibly if seeding breaks
+    }
+}
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -97,5 +121,7 @@ app.UseCors("AllowReactApp");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+
 
 app.Run();
