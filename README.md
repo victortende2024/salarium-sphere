@@ -119,6 +119,11 @@ The dev server runs at `http://localhost:5173` and proxies `/api` to `http://loc
 | :---: | :---: | :---: |
 | ![Login](docs/screenshots/login.png) | ![Dashboard](docs/screenshots/dashboard.png) | ![Payslip](docs/screenshots/payslip.png) |
 
+
+## 📖 Case Study
+
+For a deeper look at the architecture decisions, challenges solved, and lessons learned while building this platform, see the [case study](docs/case-study.md).
+
 ## 📬 Contact
 
 **Victor Tende** — Full Stack .NET - React/Angular Developer
