@@ -115,7 +115,9 @@ The dev server runs at `http://localhost:5173` and proxies `/api` to `http://loc
 
 ## 📸 Screenshots
 
-_(Add screenshots of the login, admin dashboard, and payslip view here.)_
+| Login | Admin Dashboard | Payslip |
+| :---: | :---: | :---: |
+| ![Login](docs/screenshots/login.png) | ![Dashboard](docs/screenshots/dashboard.png) | ![Payslip](docs/screenshots/payslip.png) |
 
 ## 📬 Contact
 
